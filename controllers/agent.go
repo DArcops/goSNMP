@@ -44,7 +44,6 @@ func Delete(hostname string, ip string, comunity string) error {
 
 	for i, line := range lines {
 		if strings.Contains(line, ip) {
-			fmt.Println("!!!match", ip)
 			lines[i] = ""
 		}
 	}
