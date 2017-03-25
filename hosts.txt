@@ -1,2 +1,11 @@
 windows 8.25.100.10
-linux 8.25.100.10 
+linux 8.25.100.10
+windows 8.25.100.10 SNMPCom
+windows 8.25.100.10 SNMPCom
+windows 8.25.100.10 SNMPCom
+windows 8.25.100.10 SNMPCom
+
+
+
+
+windows 8.25.100.12 SNMPCom
