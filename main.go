@@ -16,6 +16,20 @@ func main() {
 	}
 	fmt.Println("from main function", agents)
 
+	//When you recive request for add a new agent , you need hostname, comunity and ip
+	//maybe in the API recive that params by get request
+	agentIP := "8.25.100.10"
+	agentComunity := "SNMPCom"
+	agentHostname := "windows"
+
+	err = c.Add(agentHostname, agentIP, agentComunity)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Agent added")
+	agents, _ = c.ActiveAgents()
+	fmt.Println(agents)
+
 	// Default is a pointer to a GoSNMP struct that contains sensible defaults
 	// eg port 161, community public, etc
 	g.Default.Target = "192.168.1.10"
