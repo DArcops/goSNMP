@@ -4,16 +4,23 @@ import (
 	"fmt"
 	"log"
 
+	c "github.com/DArcops/goSNMP/controllers"
 	g "github.com/soniah/gosnmp"
 )
 
 func main() {
+	//check how many agents are active
+	agents, err := c.ActiveAgents()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("from main function", agents)
 
 	// Default is a pointer to a GoSNMP struct that contains sensible defaults
 	// eg port 161, community public, etc
 	g.Default.Target = "192.168.1.10"
 	g.Default.Version = 0x1
-	err := g.Default.Connect()
+	err = g.Default.Connect()
 	if err != nil {
 		log.Fatalf("Connect() err: %v", err)
 	}
