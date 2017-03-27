@@ -1,13 +1,26 @@
 package main
 
 import (
-	"fmt"
-	"log"
-
-	c "github.com/DArcops/goSNMP/controllers"
-	g "github.com/soniah/gosnmp"
+	"github.com/DArcops/goSNMP/api"
+	"github.com/gin-gonic/gin"
 )
 
+func main() {
+	router := gin.Default()
+	apiRoutes := router.Group("api")
+	{
+		agent := apiRoutes.Group("agent")
+		{
+			agent.POST("", api.AddAgent)
+			agent.GET("", api.GetAgents)
+			agent.GET(":ip", api.GetAgent)
+			agent.DELETE(":ip", api.DeleteAgent)
+		}
+	}
+	router.Run(":8000")
+}
+
+/*
 func main() {
 	//check how many agents are active
 	agents, err := c.ActiveAgents()
@@ -61,4 +74,4 @@ func main() {
 			fmt.Printf("number: %d\n", g.ToBigInt(variable.Value))
 		}
 	}
-}
+}*/

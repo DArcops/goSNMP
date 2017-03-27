@@ -1,11 +1,2 @@
-windows 8.25.100.10
-linux 8.25.100.10
 windows 8.25.100.10 SNMPCom
-windows 8.25.100.10 SNMPCom
-windows 8.25.100.10 SNMPCom
-windows 8.25.100.10 SNMPCom
-
-
-
-
-windows 8.25.100.12 SNMPCom
+mario 10.0.0.4 SNMPcom
