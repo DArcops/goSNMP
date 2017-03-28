@@ -63,14 +63,13 @@ func GetAgent(c *gin.Context) {
 
 //GetAgents returns all agents registered.
 func GetAgents(c *gin.Context) {
-
+	var agents []controllers.Agent
 	agents, err := controllers.ActiveAgents()
 	if err != nil {
 		JSONError(http.StatusInternalServerError, err, c)
 		return
 	}
 	//c.JSON(http.StatusOK, agents)
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"agents": agents,
-	})
+	c.HTML(http.StatusOK, "index.tmpl", agents)
+
 }

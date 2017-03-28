@@ -15,14 +15,26 @@ type Agent struct {
 }
 
 //ActiveAgents returns all agents registered in hosts file.
-func ActiveAgents() (int, error) {
+func ActiveAgents() ([]Agent, error) {
+	var agents []Agent
 	content, err := io.ReadFile("./hosts.txt")
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
-	strContent := string(content)
-	lines := strings.Count(strContent, "\n")
-	return lines, nil
+	lines := strings.Split(string(content), "\n")
+	for _, line := range lines {
+		data := strings.Split(line, " ")
+		if len(data) > 1 {
+			a := Agent{
+				IP:       data[1],
+				Hostname: data[0],
+				Comunity: data[2],
+			}
+			agents = append(agents, a)
+		}
+	}
+
+	return agents, nil
 }
 
 //Add registers a new Agent in hosts file.

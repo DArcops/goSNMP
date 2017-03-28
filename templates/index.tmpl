@@ -37,41 +37,19 @@
        </div>
      </div>
 
-     <h3 style="color:#ee6e73">Agentes: {{ .agents }}</h3>
+     <h3 style="color:#ee6e73">Agentes: </h3>
 
      <ul class="collection" style="padding-top:30px;padding-bottom:30px;">
-       <li class="collection-item avatar">
-         <i class="material-icons circle green">insert_chart</i>
-         <span class="title">Hostname: </span>
-         <p>IP: <br>
-            Comunidad:
-         </p>
-         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-       </li>
-       <li class="collection-item avatar">
-         <i class="material-icons circle green">insert_chart</i>
-         <span class="title">Title</span>
-         <p>First Line <br>
-            Second Line
-         </p>
-         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-       </li>
-       <li class="collection-item avatar">
-         <i class="material-icons circle green">insert_chart</i>
-         <span class="title">Title</span>
-         <p>First Line <br>
-            Second Line
-         </p>
-         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-       </li>
-       <li class="collection-item avatar">
-         <i class="material-icons circle green">insert_chart</i>
-         <span class="title">Title</span>
-         <p>First Line <br>
-            Second Line
-         </p>
-         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-       </li>
+       {{range $k, $val := .}}
+          <li class="collection-item avatar">
+            <i class="material-icons circle green">insert_chart</i>
+            <span class="title"><b>Hostname:</b> {{ $val.Hostname }} </span>
+            <p><b>IP:</b> {{ $val.IP }} <br>
+               <b>Comunidad:</b> {{ $val.Comunity }}
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+       {{end}}
   </ul>
 
 
