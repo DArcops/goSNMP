@@ -69,13 +69,13 @@
     <div class="col s12 m6">
       <ul class="collection" >
         {{range $k, $val := .}}
-           <li class="collection-item avatar">
+           <li class="collection-item avatar" onclick="view({{$val.IP}})">
              <i class="material-icons circle green">insert_chart</i>
              <span class="title"><b>Hostname:</b> {{ $val.Hostname }} </span>
              <p><b>IP:</b> {{ $val.IP }} <br>
                 <b>Comunidad:</b> {{ $val.Comunity }}
              </p>
-             <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+             <a  class="secondary-content" ><i class="material-icons">grade</i></a>
            </li>
         {{end}}
    </ul>
@@ -118,6 +118,10 @@
          var com = $("#com").val();
          form.setAttribute('action', '/api/agent?Hostname='+hn+'&Comunity='+com+'&IP='+ip)
          form.submit();
+       }
+
+       function view(p){
+          window.location.href = "/api/agent/"+p;
        }
      </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>

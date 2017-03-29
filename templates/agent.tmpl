@@ -27,9 +27,14 @@
         <li class="collection-item">Hostname: {{.Hostname}}</li>
         <li class="collection-item">IP: {{.IP}}</li>
         <li class="collection-item">Comunidad: {{.Comunity}}</li>
-      </ul>
+  </ul>
 
-     <footer class="page-footer" style="flex: 1 0 auto;padding-top:100px;">
+      <button class="waves-effect waves-light btn" onclick="exec();">Eliminar agente</Button>
+
+    <br>
+    <br>
+
+     <footer class="page-footer" >
    <div class="container">
      <div class="row">
        <div class="col l6 s12">
@@ -55,6 +60,17 @@
  </footer>
      <!--Import jQuery before materialize.js-->
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script>
+     function exec(){
+      $.ajax({
+          url: '/api/agent/'+{{.IP}},
+          type: 'DELETE',
+          success: function(result) {
+            window.location.href = '/api/agent';
+          }
+      });
+     }
+     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
    </body>
  </html>
