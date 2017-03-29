@@ -12,7 +12,7 @@
 
    <body>
      <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper" style="color:#2196F3;">
       <a href="#" class="brand-logo">SNMP</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="sass.html">Agregar</a></li>
@@ -35,25 +35,55 @@
            </div>
          </div>
        </div>
+
+       <div class="col s12 m6 push-m2">
+         <div class="row">
+          <div class="input-field col m5">
+            <input  id="first_name" type="text" class="validate">
+            <label for="first_name">Hostname</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col m5">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">IP</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col m5">
+            <input id="com" type="text" class="validate">
+            <label for="com">Comunidad</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col m5">
+            <button class="waves-effect waves-light btn" onclick="exec();">Agregar Nuevo</Bu>
+          </div>
+        </div>
+       </div>
      </div>
 
      <h3 style="color:#ee6e73">Agentes: </h3>
 
-     <ul class="collection" style="padding-top:30px;padding-bottom:30px;">
-       {{range $k, $val := .}}
-          <li class="collection-item avatar">
-            <i class="material-icons circle green">insert_chart</i>
-            <span class="title"><b>Hostname:</b> {{ $val.Hostname }} </span>
-            <p><b>IP:</b> {{ $val.IP }} <br>
-               <b>Comunidad:</b> {{ $val.Comunity }}
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </li>
-       {{end}}
-  </ul>
+  <div class="row" style="padding-top:30px;padding-bottom:30px;">
+    <div class="col s12 m6">
+      <ul class="collection" >
+        {{range $k, $val := .}}
+           <li class="collection-item avatar">
+             <i class="material-icons circle green">insert_chart</i>
+             <span class="title"><b>Hostname:</b> {{ $val.Hostname }} </span>
+             <p><b>IP:</b> {{ $val.IP }} <br>
+                <b>Comunidad:</b> {{ $val.Comunity }}
+             </p>
+             <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+           </li>
+        {{end}}
+   </ul>
+    </div>
+</div>
 
 
-     <footer class="page-footer" style="flex: 1 0 auto;padding-top:100px;">
+     <footer class="page-footer" style="flex: 1 0 auto;padding-top:100px;color:#2196F3;">
    <div class="container">
      <div class="row">
        <div class="col l6 s12">
@@ -79,6 +109,17 @@
  </footer>
      <!--Import jQuery before materialize.js-->
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script>
+       function exec(){
+         var form = document.createElement('form');
+         form.setAttribute('method', 'post');
+         var hn = $("#first_name").val();
+         var ip = $("#last_name").val();
+         var com = $("#com").val();
+         form.setAttribute('action', '/api/agent?Hostname='+hn+'&Comunity='+com+'&IP='+ip)
+         form.submit();
+       }
+     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
    </body>
  </html>
